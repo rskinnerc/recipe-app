@@ -40,17 +40,16 @@ To get a local copy up and running follow these simple example steps.
 
 ## Authors
 
-👤 **Author1**
+👤 **Ronald Skinner**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@rskinnerc](https://github.com/rskinnerc)
+- Twitter: [@XSkinner](https://twitter.com/XSkinner)
+- LinkedIn: [Ronald Skinner Cardenas](https://www.linkedin.com/in/rskinnerc/)
 
-👤 **Author2**
+👤 **Saifullah**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [saifullah](https://github.com/saifullah767)
+- LinkedIn: [saifullah](https://linkedin.com/in/saifkj)
 
 ## 🤝 Contributing
 
