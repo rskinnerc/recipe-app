@@ -7,7 +7,7 @@ RSpec.describe 'Recipes', type: :request do
     @first = Recipe.create!(name: 'Test Recipe', description: 'Test Description', public: false, cooking_time: 60,
                             preparation_time: 60, user: @user)
     @second = Recipe.create!(name: 'Test Recipe 2', description: 'Test Description', public: true, cooking_time: 60,
-                   preparation_time: 60, user: @user)
+                             preparation_time: 60, user: @user)
     Recipe.create!(name: 'Test Recipe 3', description: 'Test Description', public: 0, cooking_time: 60,
                    preparation_time: 60, user: @user)
     Recipe.create!(name: 'Test Recipe 4', description: 'Test Description', public: 0, cooking_time: 60,
@@ -48,7 +48,7 @@ RSpec.describe 'Recipes', type: :request do
 
     it 'should raise an AccessDenied error if the is not the owner and the recipe is not public' do
       sign_in @user2
-      expect{ get recipe_path(@first) }.to raise_error(CanCan::AccessDenied)
+      expect { get recipe_path(@first) }.to raise_error(CanCan::AccessDenied)
     end
 
     it 'returns http success if the user is not the owner and the recipe IS public' do
