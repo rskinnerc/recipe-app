@@ -73,6 +73,18 @@ RSpec.describe 'Recipes', type: :request do
       expect(response.body).to include('60')
       expect(response.body).to include('60')
     end
+
+    it 'should contain a link to the form for adding ingredients if the user is the owner' do
+      sign_in @user
+      get recipe_path(@first)
+      expect(response.body).to include('Add Ingredient')
+    end
+
+    it 'should NOT contain a link to the form for adding ingredients if the user is NOT the owner' do
+      sign_in @user2
+      get recipe_path(@second)
+      expect(response.body).to_not include('Add Ingredient')
+    end
   end
 
   describe 'DELETE /recipes/:id' do
