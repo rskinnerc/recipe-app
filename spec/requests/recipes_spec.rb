@@ -4,9 +4,9 @@ RSpec.describe 'Recipes', type: :request do
   before(:all) do
     @user = User.create!(name: 'Test User', email: 'test@email.com', password: 'password')
     @user2 = User.create!(name: 'Test User 2', email: 'test2@email.com', password: 'password')
-    @first = Recipe.create!(name: 'Test Recipe', description: 'Test Description', public: 0, cooking_time: 60,
+    @first = Recipe.create!(name: 'Test Recipe', description: 'Test Description', public: false, cooking_time: 60,
                             preparation_time: 60, user: @user)
-    Recipe.create!(name: 'Test Recipe 2', description: 'Test Description', public: 0, cooking_time: 60,
+    @second = Recipe.create!(name: 'Test Recipe 2', description: 'Test Description', public: true, cooking_time: 60,
                    preparation_time: 60, user: @user)
     Recipe.create!(name: 'Test Recipe 3', description: 'Test Description', public: 0, cooking_time: 60,
                    preparation_time: 60, user: @user)
@@ -40,23 +40,33 @@ RSpec.describe 'Recipes', type: :request do
   end
 
   describe 'GET /recipes/:id' do
-    it 'returns http success' do
+    it 'returns http success if the user is the owner' do
       sign_in @user
-      get recipe_path(Recipe.first)
-
+      get recipe_path(@first)
       expect(response).to have_http_status(:success)
     end
 
-    it 'renders the show template' do
+    it 'should raise an AccessDenied error if the is not the owner and the recipe is not public' do
+      sign_in @user2
+      expect{ get recipe_path(@first) }.to raise_error(CanCan::AccessDenied)
+    end
+
+    it 'returns http success if the user is not the owner and the recipe IS public' do
+      sign_in @user2
+      get recipe_path(@second)
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'renders the show template when the user can access the recipe details page' do
       sign_in @user
-      get recipe_path(Recipe.first)
+      get recipe_path(@first)
 
       expect(response).to render_template('show')
     end
 
-    it 'should display the recipe details' do
+    it 'should display the recipe details when the user can access the recipe details page' do
       sign_in @user
-      get recipe_path(Recipe.first)
+      get recipe_path(@first)
 
       expect(response.body).to include('Test Recipe')
       expect(response.body).to include('Test Description')
