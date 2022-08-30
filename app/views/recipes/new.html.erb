@@ -3,6 +3,11 @@
   <%= form.text_field :name %>
   <%= form.label :description %>
   <%= form.text_area :description %>
-  
+  <%= form.number_field :preparation_time %>
+  <%= form.label :preparation_time %>
+  <%= form.number_field :cooking_time %>
+  <%= form.label :cooking_time %>
+  <%= form.check_box :public %>
+  <%= form.label :public, 'Public Recipe?' %>
   <%= form.submit %>
 <% end %>
