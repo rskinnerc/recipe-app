@@ -39,11 +39,6 @@ RSpec.describe Recipe, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it "is not valid without a public flag" do
-    subject.public = nil
-    expect(subject).to_not be_valid
-  end
-
   it "is not valid with a preparation time less than 0" do
     subject.preparation_time = -1
     expect(subject).to_not be_valid
