@@ -15,7 +15,7 @@ RSpec.describe 'Recipes', type: :request do
                    preparation_time: 60, user: @user2)
   end
 
-  describe 'GET /' do
+  describe 'GET /recipes' do
     it 'returns http success' do
       get '/recipes'
       expect(response).to have_http_status(:success)
@@ -32,6 +32,26 @@ RSpec.describe 'Recipes', type: :request do
       expect(response.body).to include('Test Recipe 2')
       expect(response.body).to include('Test Recipe 3')
       expect(response.body).to_not include('Test Recipe 4')
+    end
+  end
+
+  describe 'GET /recipes/:id' do
+    it 'returns http success' do
+      get recipe_path(Recipe.first)
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'renders the show template' do
+      get recipe_path(Recipe.first)
+      expect(response).to render_template('show')
+    end
+
+    it 'should display the recipe details' do
+      get recipe_path(Recipe.first)
+      expect(response.body).to include('Test Recipe')
+      expect(response.body).to include('Test Description')
+      expect(response.body).to include('60')
+      expect(response.body).to include('60')
     end
   end
 end
