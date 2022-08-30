@@ -3,6 +3,8 @@ class Ability
 
   def initialize(user)
     can :read, Recipe, public: true
-    can :manage, Recipe, user:
+
+    return unless user.present?
+    can :manage, Recipe, user: user
   end
 end

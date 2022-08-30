@@ -108,4 +108,22 @@ RSpec.describe 'Recipes', type: :request do
       expect(Recipe.exists?(@first.id)).to be(false)
     end
   end
+
+  describe 'GET /recipes/new' do
+    it 'should raise an AccessDenied error if the user hasn\'t signed in' do
+      expect { get new_recipe_path }.to raise_error(CanCan::AccessDenied)
+    end
+
+    it 'should render the new template if the user is signed in' do
+      sign_in @user
+      get new_recipe_path
+      expect(response).to render_template('new')
+    end
+
+    it 'should display a form for creating a new recipe' do
+      sign_in @user
+      get new_recipe_path
+      expect(response.body).to include('<form')
+    end
+  end
 end

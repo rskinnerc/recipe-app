@@ -7,6 +7,9 @@ class RecipesController < ApplicationController
 
   def show; end
 
+  def new
+  end
+
   def destroy
     @recipe.destroy
     redirect_to recipes_path
