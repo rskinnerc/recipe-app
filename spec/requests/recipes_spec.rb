@@ -128,13 +128,15 @@ RSpec.describe 'Recipes', type: :request do
   end
 
   describe 'POST /recipes' do
-    subject {Recipe.new(
+    subject do
+      Recipe.new(
         name: 'Test Recipe',
         description: 'Test Description',
         public: false,
         cooking_time: 60,
         preparation_time: 60
-      )}
+      )
+    end
 
     it 'should raise an AccessDenied error if the user hasn\'t signed in' do
       expect { post recipes_path, params: { recipe: subject.attributes } }.to raise_error(CanCan::AccessDenied)
