@@ -126,4 +126,24 @@ RSpec.describe 'Recipes', type: :request do
       expect(response.body).to include('<form')
     end
   end
+
+  describe 'POST /recipes' do
+    subject {Recipe.new(
+        name: 'Test Recipe',
+        description: 'Test Description',
+        public: false,
+        cooking_time: 60,
+        preparation_time: 60
+      )}
+
+    it 'should raise an AccessDenied error if the user hasn\'t signed in' do
+      expect { post recipes_path, params: { recipe: subject.attributes } }.to raise_error(CanCan::AccessDenied)
+    end
+
+    it 'should create a new recipe if the user is signed in and redirect him to the new recipe details' do
+      sign_in @user
+      expect { post recipes_path, params: { recipe: subject.attributes } }.to change(Recipe, :count).by(1)
+      expect(response).to redirect_to(recipe_path(Recipe.last))
+    end
+  end
 end
