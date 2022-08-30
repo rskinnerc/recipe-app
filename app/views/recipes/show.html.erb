@@ -1,0 +1,8 @@
+<%= @recipe.name %>
+<%= @recipe.description %>
+<%= @recipe.preparation_time %>
+<%= @recipe.cooking_time %>
+
+<% if can? :manage, @recipe %>
+  <%= link_to 'Add Ingredient' %>
+<% end %>
