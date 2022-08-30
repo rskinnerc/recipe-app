@@ -16,7 +16,7 @@ RSpec.describe 'Recipes', type: :request do
 
   describe 'GET /recipes' do
     it 'returns http success' do
-      sign_in @user      
+      sign_in @user
       get '/recipes'
       expect(response).to have_http_status(:success)
     end
