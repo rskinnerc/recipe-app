@@ -89,7 +89,8 @@ RSpec.describe 'Recipes', type: :request do
 
   describe 'DELETE /recipes/:id' do
     it 'should raises a AccessDenied error when the user hasn\'t signed in' do
-      expect { delete recipe_path(@first) }.to raise_error(CanCan::AccessDenied)
+      delete recipe_path(@first)
+      expect(response).to redirect_to(new_user_session_path)
 
       expect(Recipe.exists?(@first.id)).to be(true)
     end
@@ -111,7 +112,8 @@ RSpec.describe 'Recipes', type: :request do
 
   describe 'GET /recipes/new' do
     it 'should raise an AccessDenied error if the user hasn\'t signed in' do
-      expect { get new_recipe_path }.to raise_error(CanCan::AccessDenied)
+      get new_recipe_path
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it 'should render the new template if the user is signed in' do
@@ -139,7 +141,8 @@ RSpec.describe 'Recipes', type: :request do
     end
 
     it 'should raise an AccessDenied error if the user hasn\'t signed in' do
-      expect { post recipes_path, params: { recipe: subject.attributes } }.to raise_error(CanCan::AccessDenied)
+      post recipes_path, params: { recipe: subject.attributes }
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it 'should create a new recipe if the user is signed in and redirect him to the new recipe details' do
