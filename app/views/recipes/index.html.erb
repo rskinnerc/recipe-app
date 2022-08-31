@@ -1,3 +1,15 @@
-<% @recipes.each do |recipe| %>
-  <%= recipe.name %>
-<% end %>
+<ul class="flex flex-col gap-4 my-4">
+  <% @recipes.each do |recipe| %>
+    <li class="flex bg-orange-100 rounded-lg border border-orange-500 p-3">
+      <div class="w-2/5 text-center">
+        <%= link_to recipe.name, recipe, class: 'font-semibold text-lg text-orange-900 block my-2 underline hover:text-orange-500' %>
+        <% if can? :destroy, recipe %>
+          <%= button_to 'Delete', recipe_path(recipe), method: :delete, class: 'text-white bg-red-500 hover:bg-red-600 rounded-md font-semibold text-sm p-2' %>
+        <% end %>
+      </div>
+      <p class="w-3/5">
+        <%= truncate recipe.description %>
+      </p>
+    </li>
+  <% end %>
+</ul>
