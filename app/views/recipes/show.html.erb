@@ -1,8 +1,17 @@
-<%= @recipe.name %>
-<%= @recipe.description %>
-<%= @recipe.preparation_time %>
-<%= @recipe.cooking_time %>
+<div class="bg-orange-100 rounded-lg border border-orange-500 p-3 my-4">
+  <h1 class="text-2xl text-orange-900 text-center font-bold"><%= @recipe.name %></h1>
+  <%= render partial: 'visibility_button', locals: {public: @recipe.public} %>
+  <h3 class="font-semibold text-lg">Preparation Time: <%= @recipe.preparation_time %> mins</h3>
+  <h3 class="font-semibold text-lg">Cooking Time: <%= @recipe.cooking_time %> mins</h3>
+  <h3 class="font-semibold text-lg mt-4">Recipe Description:</h3>
+  <p><%= @recipe.description %></p>
+  <div class="my-8 flex justify-around">
+    <%= link_to 'Generate Shopping list', nil, class: 'text-white bg-orange-500 font-semibold rounded-md p-2' %>
+    <% if can? :manage, @recipe %>
+      <%= link_to 'Add Ingredient', nil,  class: 'text-white bg-orange-500 font-semibold rounded-md p-2' %>
+    <% end %>
+  </div>
+  
+  <hr>
+</div>
 
-<% if can? :manage, @recipe %>
-  <%= link_to 'Add Ingredient' %>
-<% end %>
