@@ -1,0 +1,8 @@
+<%= link_to 'Recipes App', root_path %>
+<%= link_to 'Public Recipes', public_recipes_path %>
+<% if user_signed_in? %>
+  <%= link_to 'My Recipes', recipes_url %>
+<% elsif %>
+  <%= link_to 'Login', user_session_url %>
+  <%= link_to 'Sign Up', new_user_registration_url %>
+<% end %>
