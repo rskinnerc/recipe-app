@@ -1,0 +1,15 @@
+<h1>Add New Foods</h1>
+
+<%= form_with model:@food, url: user_foods_path do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: 'Enter Name of Food' %> <br><br>
+        <%= f.label :measurement_unit %>
+        <%= f.text_field :measurement_unit, autofocus: false, autocomplete: "measurement_unit", placeholder: 'Enter Measurement Unit' %> <br><br>
+        <%= f.label :price %>
+        <%= f.text_field :price, autofocus: false, autocomplete: "price", placeholder: 'Enter Price of Food' %><br><br>
+        <%= f.label :quantity %>
+        <%= f.text_field :quantity, autofocus: false, autocomplete: "quantity", placeholder: 'Enter quantity of Food' %><br><br>
+        <%= f.submit 'Add New Food' %>
+    </div>
+<% end %> 

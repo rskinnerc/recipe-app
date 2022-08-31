@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   # root to: "home#index"
-  resources :food, only: [:index]
+  resources :food, only: [:index, :show]
   resources :recipes, only: [:index, :show, :new, :create, :destroy]
 end
