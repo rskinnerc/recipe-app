@@ -16,6 +16,7 @@ RSpec.feature 'NavigationMenus', type: :feature do
     expect(page).to have_link 'Public Recipes'
     expect(page).to have_selector '#logo'
     expect(page).to have_link 'My Recipes'
+    expect(page).to have_link 'My Foods'
     expect(page).to_not have_link 'Login'
   end
 end
