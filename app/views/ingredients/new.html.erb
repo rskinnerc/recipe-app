@@ -1,4 +1,5 @@
 <h1 class="text-orange-900 text-2xl my-4 text-right font-semibold">Add ingredients to <%= @recipe.name %></h1>
+<% unless @ingredients.empty? %>
 <%= form_with url: recipe_ingredients_path, class: 'flex flex-col rounded-lg border border-orange-500 p-3 my-4' do |form| %>
   <% @ingredients.each do |ingredient| %>
     <div class="flex items-center my-4">
@@ -8,13 +9,14 @@
         <%= form.check_box "foods[][checked]", include_hidden: false %>
       </div>
       <div class="flex flex-col w-2/5">
-        <%= form.label 'Quantity' %>
+        <%= form.label 'Quantity' %> <span class="text-sm text-orange-400">(<%= ingredient.measurement_unit %>)</span>
         <%= form.hidden_field "foods[][food_id]", value: ingredient.id %>
         <%= form.number_field "foods[][quantity]", value: 0 %>
       </div>
     </div>
   <% end %>
   <%= form.submit 'Add Selected', class: 'text-white bg-orange-500 font-semibold rounded-md p-2 my-4 self-end' %>
+<% end %>
 <% end %>
 
 <%= link_to "Do not have an ingredient yet? Add one now!", new_food_path, class: 'mx-auto block w-2/3 text-white bg-gradient-to-r to-lime-700 from-lime-500 font-semibold rounded-md p-4' %>
