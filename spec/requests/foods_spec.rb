@@ -54,4 +54,26 @@ RSpec.describe 'Foods', type: :request do
       expect(response.body).to include('Add Food')
     end
   end
+
+  describe 'POST /foods' do
+    subject do
+      Food.new(
+        name: 'Test Recipe',
+        measurement_unit: 'grams',
+        price: 1,
+        quantity: 1
+      )
+    end
+
+    it 'redirects to the login page when the user is not authenticated' do
+      post foods_path, params: { recipe: subject.attributes }
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
+    it 'should create a new food if the user is signed in and redirect him to the foods list' do
+      sign_in @user
+      expect { post foods_path, params: { food: subject.attributes } }.to change(Food, :count).by(1)
+      expect(response).to redirect_to(foods_path)
+    end
+  end
 end
