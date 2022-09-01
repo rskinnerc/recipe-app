@@ -49,4 +49,12 @@ RSpec.describe Recipe, type: :model do
     subject.cooking_time = -1
     expect(subject).to_not be_valid
   end
+
+  it 'should have many recipes_foods' do
+    expect(subject).to respond_to(:recipe_foods)
+  end
+
+  it 'should have many foods' do
+    expect(subject).to respond_to(:foods)
+  end
 end

@@ -49,4 +49,16 @@ RSpec.describe Food, type: :model do
     subject.quantity = -1
     expect(subject).to_not be_valid
   end
+
+  it 'should have many recipes' do
+    expect(subject).to respond_to(:recipes)
+  end
+
+  it 'should have many recipes_foods' do
+    expect(subject).to respond_to(:recipe_foods)
+  end
+
+  it 'should have many recipes through recipe_foods' do
+    expect(subject.recipes).to_not be_nil
+  end
 end
