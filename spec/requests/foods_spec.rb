@@ -34,4 +34,24 @@ RSpec.describe 'Foods', type: :request do
       expect(response.body).to include('Test Food 3')
     end
   end
+
+  describe 'GET /foods/new' do
+    it 'redirects to the login page when the user is not authenticated' do
+      get new_food_path
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
+    it 'returns http success when the user is autenticated' do
+      sign_in @user
+      get new_food_path
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'renders the new template and shows the Add Food title' do
+      sign_in @user
+      get new_food_path
+      expect(response).to render_template('new')
+      expect(response.body).to include('Add Food')
+    end
+  end
 end
