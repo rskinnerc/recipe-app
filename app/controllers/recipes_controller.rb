@@ -6,7 +6,9 @@ class RecipesController < ApplicationController
     @recipes = current_user.recipes.includes(:user)
   end
 
-  def show; end
+  def show
+    session[:recipe_id] = nil
+  end
 
   def new; end
 

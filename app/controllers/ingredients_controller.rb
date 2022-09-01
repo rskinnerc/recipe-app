@@ -5,6 +5,7 @@ class IngredientsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     authorize! :manage, @recipe
     @ingredients = current_user.foods.where.not(id: @recipe.food_ids)
+    session[:recipe_id] = @recipe.id
   end
 
   def create

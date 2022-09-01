@@ -70,7 +70,7 @@ RSpec.describe 'Foods', type: :request do
       expect(response).to redirect_to(new_user_session_path)
     end
 
-    it 'should create a new food if the user is signed in and redirect him to the foods list' do
+    it 'should create a new food if the user is signed in and redirect him back' do
       sign_in @user
       expect { post foods_path, params: { food: subject.attributes } }.to change(Food, :count).by(1)
       expect(response).to redirect_to(foods_path)

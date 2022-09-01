@@ -11,7 +11,11 @@ class FoodsController < ApplicationController
     @food = current_user.foods.build(food_params)
 
     if @food.save
-      redirect_to foods_path, notice: 'Food was successfully created.'
+      if session[:recipe_id].nil?
+        redirect_to foods_path
+      else
+        redirect_to recipe_path(session[:recipe_id])
+      end
     else
       render :new
     end
