@@ -46,7 +46,7 @@ RSpec.describe 'Recipes', type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it 'should raise an AccessDenied error if the is not the owner and the recipe is not public' do
+    it 'should raise an AccessDenied error if the user is not the owner and the recipe is not public' do
       sign_in @user2
       expect { get recipe_path(@first) }.to raise_error(CanCan::AccessDenied)
     end
