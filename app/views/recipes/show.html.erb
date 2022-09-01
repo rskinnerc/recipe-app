@@ -8,7 +8,7 @@
   <div class="my-8 flex justify-around">
     <%= link_to 'Generate Shopping list', nil, class: 'text-white bg-orange-500 font-semibold rounded-md p-2' %>
     <% if can? :manage, @recipe %>
-      <%= link_to 'Add Ingredient', nil,  class: 'text-white bg-orange-500 font-semibold rounded-md p-2' %>
+      <%= link_to 'Add Ingredient', new_recipe_ingredient_path(@recipe),  class: 'text-white bg-orange-500 font-semibold rounded-md p-2' %>
     <% end %>
   </div>
   
