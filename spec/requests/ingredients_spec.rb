@@ -91,4 +91,28 @@ RSpec.describe 'Ingredients', type: :request do
       expect(@first.foods.count).to eq(3)
     end
   end
+
+  describe 'DELETE /recipe/:id/ingredients/:id' do
+    it 'raises an AccessDenied error if the user is not the owner of the recipe' do
+      sign_in @user2
+      expect { delete recipe_ingredient_path(@first, @food3) }.to raise_error(CanCan::AccessDenied)
+    end
+
+    it 'redirects to the login page path if the user is not authenticated' do
+      delete recipe_ingredient_path(@first, @food3)
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
+    it 'should remove the ingredient from the recipe' do
+      sign_in @user
+      delete recipe_ingredient_path(@first, @food3)
+      expect(@first.foods.count).to eq(0)
+    end
+
+    it 'should redirect the user to the recipe details after removing the ingredient' do
+      sign_in @user
+      delete recipe_ingredient_path(@first, @food3)
+      expect(response).to redirect_to(recipe_path(@first))
+    end
+  end
 end

@@ -29,7 +29,7 @@
         <td class="text-center"><%= food[:quantity] %></td>
         <td class="text-center">$<%= food[:price] %></td>
         <td class="text-center group-last:rounded-br-lg">
-          <%= button_to 'Delete', food_path(food), method: :delete, class: 'text-white bg-orange-500 font-semibold my-4 rounded-md p-2' %>
+          <%= button_to 'Delete', recipe_ingredient_path(@recipe, food[:food_id]), method: :delete, class: 'text-white bg-orange-500 font-semibold my-4 rounded-md p-2' %>
         </td>
       </tr>
     <% end %>
