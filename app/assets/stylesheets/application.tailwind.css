@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  input[type=number],
+  textarea {
+    @apply border-solid border-orange-200 ring-orange-300 focus:border-orange-300 focus:ring-orange-400 focus:ring-0 border-2 rounded-lg py-2 px-4;
+  }
+}

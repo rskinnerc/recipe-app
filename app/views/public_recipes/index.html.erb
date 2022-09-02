@@ -1,0 +1,16 @@
+<h1 class="text-orange-900 text-2xl my-4 text-right font-semibold">Public Recipes</h1>
+
+<ul class="flex flex-col gap-4 my-4 clear-right">
+  <% @recipes.each do |recipe| %>
+    <li class="flex bg-orange-100 rounded-lg border border-orange-500 p-3">
+      <div class="w-2/5">
+        <%= link_to recipe.name, recipe, class: 'font-semibold text-lg text-orange-900 block my-2 underline hover:text-orange-500' %>
+        <p>By: <span class="font-semibold"><%= recipe.user.name %></span></p>
+      </div>
+      <div class="w-3/5">
+        <p>Total food items: <span class="font-semibold"><%= recipe.foods.count %></span></p>
+        <p>Total food items: <span class="font-semibold">$<%= recipe.total_price%></span></p> 
+      </div>
+    </li>
+  <% end %>
+</ul>

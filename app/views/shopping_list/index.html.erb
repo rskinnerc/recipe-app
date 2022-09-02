@@ -1,0 +1,25 @@
+<h1 class="text-orange-900 text-3xl my-4 text-center font-semibold">Shopping List</h1>
+<div class="flex justify-around gap-4 my-4">
+  <p>Amount of food items to buy: <span class="font-semibold"><%= @required.size %></span></p>
+  <p>Total value of food needed: <span class="font-semibold">$<%= @total_value %></span></p>
+</div>
+<div class="clear-right border border-orange-500 rounded-lg">
+  <table class="table-auto w-full">
+    <thead class="h-14">
+      <tr class="bg-orange-500 p-3">
+        <th class="rounded-tl-lg">Food</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @required.each do |food| %>
+        <tr class="even:bg-orange-100 group h-12">
+          <td class="pl-2  group-last:rounded-bl-lg"><%= food[:name] %></td>
+          <td class="text-center"><%= food[:quantity] %> <%= food[:measurement_unit] %></td>
+          <td class="text-center">$<%= food[:price] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

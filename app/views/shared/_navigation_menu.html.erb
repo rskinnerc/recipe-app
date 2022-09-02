@@ -1,0 +1,14 @@
+<nav class="h-20 bg-orange-500 flex justify-between items-center px-24">
+  <%= link_to (image_tag('logo.png')), root_path, id: 'logo', class: 'bg-clip-text text-transparent bg-gradient-to-r from-orange-200 to-white font-bold text-2xl' %>
+  <ul class="text-white flex gap-4">
+    <%= link_to 'Public Recipes', public_recipes_path, class: 'hover:text-orange-500 hover:bg-orange-100 p-2 rounded-md' %>
+    <% if user_signed_in? %>
+      <%= link_to 'My Recipes', recipes_url, class: 'hover:text-orange-500 hover:bg-orange-100 p-2 rounded-md' %>
+      <%= link_to 'My Foods', foods_url, class: 'hover:text-orange-500 hover:bg-orange-100 p-2 rounded-md' %>
+      <%= link_to 'Shopping List', shopping_list_url, class: 'hover:text-orange-500 hover:bg-orange-100 p-2 rounded-md' %>
+    <% elsif %>
+      <%= link_to 'Login', user_session_url, class: 'hover:text-orange-500 hover:bg-orange-100 p-2 rounded-md' %>
+      <%= link_to 'Sign Up', new_user_registration_url, class: 'hover:text-orange-500 hover:bg-orange-100 p-2 rounded-md' %>
+    <% end %>
+  </ul>
+</nav>

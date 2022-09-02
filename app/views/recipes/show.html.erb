@@ -1,0 +1,39 @@
+<div class="bg-orange-100 rounded-lg border border-orange-500 p-3 my-4">
+  <h1 class="text-2xl text-orange-900 text-center font-bold"><%= @recipe.name %></h1>
+  <%= render partial: 'visibility_button', locals: {public: @recipe.public} %>
+  <h3 class="font-semibold text-lg">Preparation Time: <%= @recipe.preparation_time %> mins</h3>
+  <h3 class="font-semibold text-lg">Cooking Time: <%= @recipe.cooking_time %> mins</h3>
+  <h3 class="font-semibold text-lg mt-4">Recipe Description:</h3>
+  <p><%= @recipe.description %></p>
+  <div class="my-8 flex justify-around">
+    <%= link_to 'Generate Shopping list', shopping_list_url, class: 'text-white bg-orange-500 font-semibold rounded-md p-2' %>
+    <% if can? :manage, @recipe %>
+      <%= link_to 'Add Ingredient', new_recipe_ingredient_path(@recipe),  class: 'text-white bg-orange-500 font-semibold rounded-md p-2' %>
+    <% end %>
+  </div>
+  <hr>
+  <h2 class="text-lg text-orange-900 text-center font-bold my-4">Ingredients</h2>
+  <table class="table-auto w-full">
+  <thead class="h-14">
+    <tr class="bg-orange-500 p-3">
+      <th class="rounded-tl-lg">Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th class="rounded-tr-lg">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ingredients.each do |food| %>
+      <tr class="even:bg-white group">
+        <td class="pl-2  group-last:rounded-bl-lg"><%= food[:name] %></td>
+        <td class="text-center"><%= food[:quantity] %></td>
+        <td class="text-center">$<%= food[:price] %></td>
+        <td class="text-center group-last:rounded-br-lg">
+          <%= button_to 'Delete', recipe_ingredient_path(@recipe, food[:food_id]), method: :delete, class: 'text-white bg-orange-500 font-semibold my-4 rounded-md p-2' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
