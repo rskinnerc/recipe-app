@@ -6,7 +6,7 @@
   <h3 class="font-semibold text-lg mt-4">Recipe Description:</h3>
   <p><%= @recipe.description %></p>
   <div class="my-8 flex justify-around">
-    <%= link_to 'Generate Shopping list', nil, class: 'text-white bg-orange-500 font-semibold rounded-md p-2' %>
+    <%= link_to 'Generate Shopping list', shopping_list_url, class: 'text-white bg-orange-500 font-semibold rounded-md p-2' %>
     <% if can? :manage, @recipe %>
       <%= link_to 'Add Ingredient', new_recipe_ingredient_path(@recipe),  class: 'text-white bg-orange-500 font-semibold rounded-md p-2' %>
     <% end %>
