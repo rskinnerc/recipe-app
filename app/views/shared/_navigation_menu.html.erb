@@ -5,6 +5,7 @@
     <% if user_signed_in? %>
       <%= link_to 'My Recipes', recipes_url, class: 'hover:text-orange-500 hover:bg-orange-100 p-2 rounded-md' %>
       <%= link_to 'My Foods', foods_url, class: 'hover:text-orange-500 hover:bg-orange-100 p-2 rounded-md' %>
+      <%= link_to 'Shopping List', shopping_list_url, class: 'hover:text-orange-500 hover:bg-orange-100 p-2 rounded-md' %>
     <% elsif %>
       <%= link_to 'Login', user_session_url, class: 'hover:text-orange-500 hover:bg-orange-100 p-2 rounded-md' %>
       <%= link_to 'Sign Up', new_user_registration_url, class: 'hover:text-orange-500 hover:bg-orange-100 p-2 rounded-md' %>
