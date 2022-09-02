@@ -1,43 +1,43 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Recipe App
 
-> Description the project.
+> The Recipe app keeps track of all your recipes, ingredients, and inventory. It will allow you to save ingredients, keep track of what you have, create recipes, and generate a shopping list based on what you have and what you are missing from all your recipes.
 
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
-
-## Live Demo (if available)
-
-[Live Demo Link](https://livedemo.com)
-
+- Ruby
+- Ruby on Rails
+- tailwindCSS
+- Bundler
+- RSpec
+- CanCanCan for Authorization
+- Devise for Authentication
+- PostgreSQL
 
 ## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
 
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
+- Ruby
+- PostgreSQL user with enough permissions for managing databases
 
 ### Setup
-
+- Clone this repository in your local machine by using `git clone git@github.com:rskinnerc/recipe-app.git`
+- Update `config/database.yml` file in order to set a working user/password postgresql account
 ### Install
+- `cd recipe-app`
+- Install the dependencies with `bundle install`
+- Run the Tailwind CSS builder with `rails tailwindcss:build`
 
 ### Usage
+- Run the app with `rails server`
+- In your browser had to [http://localhost:3000](http://localhost:3000)
 
-### Run tests
-
-### Deployment
-
-
-
+### Testing
+- Run the tests with `rspec`
 ## Authors
 
 👤 **Ronald Skinner**
@@ -45,11 +45,6 @@ To get a local copy up and running follow these simple example steps.
 - GitHub: [@rskinnerc](https://github.com/rskinnerc)
 - Twitter: [@XSkinner](https://twitter.com/XSkinner)
 - LinkedIn: [Ronald Skinner Cardenas](https://www.linkedin.com/in/rskinnerc/)
-
-👤 **Saifullah**
-
-- GitHub: [saifullah](https://github.com/saifullah767)
-- LinkedIn: [saifullah](https://linkedin.com/in/saifkj)
 
 ## 🤝 Contributing
 
@@ -70,5 +65,3 @@ Give a ⭐️ if you like this project!
 ## 📝 License
 
 This project is [MIT](./LICENSE) licensed.
-
-_NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/) - you can set it up quickly by [using templates available on GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository). You can also use [any other license](https://choosealicense.com/licenses/) if you wish._
