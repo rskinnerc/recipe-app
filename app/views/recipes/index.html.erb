@@ -1,4 +1,5 @@
-<ul class="flex flex-col gap-4 my-4">
+<%= link_to 'Add Recipe', new_recipe_path, class: 'text-white bg-orange-500 float-right font-semibold my-4 rounded-md p-2' %>
+<ul class="flex flex-col gap-4 my-4 clear-right">
   <% @recipes.each do |recipe| %>
     <li class="flex bg-orange-100 rounded-lg border border-orange-500 p-3">
       <div class="w-2/5 text-center">
