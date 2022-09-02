@@ -7,6 +7,11 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @recipe = Recipe.find(params[:id])
+    @ingredients = @recipe.recipe_foods.includes(:food).map do |recipe_food|
+      { name: recipe_food.food.name, quantity: recipe_food.quantity,
+        price: recipe_food.quantity * recipe_food.food.price, food_id: recipe_food.food_id }
+    end
     session[:recipe_id] = nil
   end
 

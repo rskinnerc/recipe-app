@@ -14,7 +14,7 @@ class FoodsController < ApplicationController
       if session[:recipe_id].nil?
         redirect_to foods_path
       else
-        redirect_to recipe_path(session[:recipe_id])
+        redirect_to new_recipe_ingredient_path(session[:recipe_id])
       end
     else
       render :new

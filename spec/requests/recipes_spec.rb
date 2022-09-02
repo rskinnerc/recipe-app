@@ -85,6 +85,14 @@ RSpec.describe 'Recipes', type: :request do
       get recipe_path(@second)
       expect(response.body).to_not include('Add Ingredient')
     end
+
+    it 'should show the ingredients for the recipe' do
+      food = Food.create!(name: 'Test Ingredient', measurement_unit: 'grams', user: @user)
+      @first.foods << food
+      sign_in @user
+      get recipe_path(@first)
+      expect(response.body).to include('Test Ingredient')
+    end
   end
 
   describe 'DELETE /recipes/:id' do

@@ -11,7 +11,29 @@
       <%= link_to 'Add Ingredient', new_recipe_ingredient_path(@recipe),  class: 'text-white bg-orange-500 font-semibold rounded-md p-2' %>
     <% end %>
   </div>
-  
   <hr>
+  <h2 class="text-lg text-orange-900 text-center font-bold my-4">Ingredients</h2>
+  <table class="table-auto w-full">
+  <thead class="h-14">
+    <tr class="bg-orange-500 p-3">
+      <th class="rounded-tl-lg">Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th class="rounded-tr-lg">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ingredients.each do |food| %>
+      <tr class="even:bg-white group">
+        <td class="pl-2  group-last:rounded-bl-lg"><%= food[:name] %></td>
+        <td class="text-center"><%= food[:quantity] %></td>
+        <td class="text-center">$<%= food[:price] %></td>
+        <td class="text-center group-last:rounded-br-lg">
+          <%= button_to 'Delete', food_path(food), method: :delete, class: 'text-white bg-orange-500 font-semibold my-4 rounded-md p-2' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 </div>
 

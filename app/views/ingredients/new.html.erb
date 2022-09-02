@@ -6,12 +6,12 @@
       <span class="w-1/5 font-bold"><%= ingredient.name %></span>
       <div class="flex flex-col items-center w-2/5">
         <%= form.label 'Add to Recipe', class: 'text-sm font-semibold' %>
-        <%= form.check_box "foods[][checked]", include_hidden: false %>
+        <%= form.check_box "foods[][checked]", id: "checked_#{ingredient.id}" %>
       </div>
       <div class="flex flex-col w-2/5">
         <%= form.label 'Quantity' %> <span class="text-sm text-orange-400">(<%= ingredient.measurement_unit %>)</span>
-        <%= form.hidden_field "foods[][food_id]", value: ingredient.id %>
-        <%= form.number_field "foods[][quantity]", value: 0 %>
+        <%= form.hidden_field "foods[][food_id]", id: "food_id_#{ingredient.id}", value: ingredient.id %>
+        <%= form.number_field "foods[][quantity]", id: "quantity_#{ingredient.id}", value: 0 %>
       </div>
     </div>
   <% end %>
